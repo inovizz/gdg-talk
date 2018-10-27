@@ -1,0 +1,62 @@
+version: '3'
+services:
+    web:
+        image: inovizz/gdg-demo:part1
+        deploy:
+          restart_policy:
+              condition: on-failure
+        ports:
+            - "9090:80"
+        networks:
+            - webnet
+    demo3:
+        build: ./demo3
+        volumes:
+            - ./demo3:/usr/src/app
+        depends_on:
+            - redis
+            - postgres
+        ports:
+            - "8888:8000"
+        command: gunicorn demo3.wsgi -b 0.0.0.0:8000
+
+    postgres:
+        build: ./postgres
+        restart: unless-stopped
+        expose:
+            - "5432"
+        environment:   # will be used by the init script
+            LC_ALL: C.UTF-8
+            POSTGRES_USER: devopspy
+            POSTGRES_PASSWORD: devopspy
+            POSTGRES_DB: devopspy
+        volumes:
+            - pgdata:/var/lib/postgresql/data/  # persist container's db data to local pgdata/ (mounted)
+
+    redis:
+        image: sickp/alpine-redis:3.2.2
+        expose:
+            - "6379"
+        volumes:
+            - redisdata:/data
+        deploy:
+            replicas: 2
+            update_config:
+                parallelism: 2
+                delay: 10s
+            restart_policy:
+                condition: on-failure
+
+    nginx:
+        restart: always
+        build: ./nginx/
+        ports:
+            - "8000:80"
+        links:
+            - demo3
+
+volumes:
+  pgdata:
+  redisdata:
+networks:
+  webnet:

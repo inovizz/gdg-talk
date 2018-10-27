@@ -1,0 +1,12 @@
+docker build -t demo1 .
+docker image ls
+docker run -p 4000:80 demo1
+docker run -d -p 4000:80 demo1
+
+docker login
+
+docker tag demo1 inovizz/demo1:part1
+
+docker push inovizz/demo1:part1
+
+docker tag demo1 inovizz/demo1:part1
