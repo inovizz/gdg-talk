@@ -15,7 +15,7 @@ services:
         networks:
             - webnet
     demo3:
-        build: ./demo3
+        image: django_service
         volumes:
             - ./demo3:/usr/src/app
         depends_on:
@@ -23,10 +23,8 @@ services:
             - postgres
         ports:
             - "8888:8000"
-        command: gunicorn demo3.wsgi -b 0.0.0.0:8000
-
     postgres:
-        build: ./postgres
+        image: postgres-service
         restart: unless-stopped
         expose:
             - "5432"
@@ -45,16 +43,14 @@ services:
         volumes:
             - redisdata:/data
         deploy:
-            replicas: 2
             update_config:
                 parallelism: 2
                 delay: 10s
             restart_policy:
                 condition: on-failure
-
     nginx:
-        restart: always
-        build: ./nginx/
+        restart: on-failure
+        image: nginx-service
         ports:
             - "8000:80"
         links:

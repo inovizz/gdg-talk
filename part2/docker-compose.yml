@@ -12,13 +12,13 @@ services:
     demo3:
         build: ./demo3
         volumes:
-            - ./demo3:/usr/src/app
+            - ./django_app:/usr/src/app
         depends_on:
             - redis
             - postgres
         ports:
             - "8888:8000"
-        command: gunicorn demo3.wsgi -b 0.0.0.0:8000
+        command: gunicorn django_app.wsgi -b 0.0.0.0:8000
 
     postgres:
         build: ./postgres
