@@ -6,7 +6,7 @@ import socket
 
 
 # Connect to Redis
-rcon = redis.StrictRedis(host="redis-server", db=0, decode_responses=True)
+rcon = redis.StrictRedis(host="redis", db=0, decode_responses=True)
 
 app = Flask(__name__)
 
@@ -17,7 +17,6 @@ def redis_counter():
         visits = rcon.incr("counter")
     except RedisError:
         visits = "<i>cannot connect to Redis, counter disabled</i>"
-
 
     html = "<h3>Hello {name}!</h3>" \
            "<b>Hostname:</b> {hostname}<br/>" \
