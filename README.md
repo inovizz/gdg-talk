@@ -1,6 +1,6 @@
 # GDG-DevFest Talk - "Dockerizing Python Microservices"
 
-I and Ramanath R gave a tall at [GDG-Hyd Devfest 2018](https://docs.google.com/presentation/d/1bF5kK3QUCMswygG4KQ5kBDBbsx01AfDaHfGncPyg8zg/edit?usp=sharing) on "[Dockerizing Python Microservices](https://devfesthyd18.firebaseapp.com/schedule/2018-10-28?&sessionId=120)". This Github repo concist the code we had used for the demo and below are the setup instructions along with some references. Please feel free to play around with these microservices and raise a PR if you find any issue or would like to add on something to the current setup.
+I and Ramanath R gave a talk at [GDG-Hyd Devfest 2018](https://docs.google.com/presentation/d/1bF5kK3QUCMswygG4KQ5kBDBbsx01AfDaHfGncPyg8zg/edit?usp=sharing) on "[Dockerizing Python Microservices](https://devfesthyd18.firebaseapp.com/schedule/2018-10-28?&sessionId=120)". This Github repo concist the code we had used for the demo and below are the setup instructions along with some references. Please feel free to play around with these microservices and raise a PR if you find any issue or would like to add on something to the current setup.
 
 ## Slides of the talk
 [Link to Google Slides](https://docs.google.com/presentation/d/1bF5kK3QUCMswygG4KQ5kBDBbsx01AfDaHfGncPyg8zg/edit?usp=sharing)
